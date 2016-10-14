@@ -1,5 +1,7 @@
-*ROBOT Project for CS101 - FALL 2016*
+# ROBOT Project for CS101 - FALL 2016
 
+
+## SETUP
 1. To use this repository please install the following software first.
 
   - Python 3.5 `https://www.python.org/downloads/`
@@ -20,5 +22,5 @@ this will install all the Python dependencies.
 6. If you run `python audiobot.py` the Tipboard server should receive the updates from the python script in realtime
 
 
-
-
+## USE
+### audiobot.py
