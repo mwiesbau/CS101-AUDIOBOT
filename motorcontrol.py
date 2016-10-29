@@ -26,6 +26,9 @@ class Motor(threading.Thread):
 		self.rotation = GPIO.input(pinRotation)
 
 
+		threading.Thread.__init__(self)
+
+
 	def run(self):
 		print("Starting " + self.name + " motor")
 		# PULSE WIDTH MODULATION SET TO FREQ 255
