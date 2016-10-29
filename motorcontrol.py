@@ -39,11 +39,13 @@ class Motor(threading.Thread):
 		self.counter = 0
 		
 	def decreaseForward(self):
-		self.pwm.ChangeDutyCycle(self.duty - 1)
+		if self.duty > 0:
+			self.pwm.ChangeDutyCycle(self.duty - 1)
 
 
 	def increaseForward(self):
-		self.pwm.ChangeDutyCycle(self.duty + 1)
+		if self.duty < 100:
+			self.pwm.ChangeDutyCycle(self.duty + 1)
 	
 	def forward(self, frequency, duty=100):
 		self.duty = duty
