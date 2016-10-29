@@ -30,6 +30,7 @@ def startRobot(sleeptime, speed):
     try:
         while True:
             print("Left Rotations = " + str(leftMotor.getRotations()))
+            leftMotor.resetRotations()
             time.sleep(sleeptime)
 
 
