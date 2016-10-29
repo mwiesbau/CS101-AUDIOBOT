@@ -24,7 +24,7 @@ def startRobot(sleeptime, speed):
 
     leftMotor = setupLeftMotor()
 
-    leftMotor.forward(255, speed)
+    leftMotor.forward(255, float(speed))
 
 
     try:
