@@ -21,14 +21,16 @@ def setupRightMotor():
     return rightMotor
 
 
-def startRobot(sleeptime, speed):
+def startRobot(sleeptime, pwm, intensity, wheel):
 
-    #leftMotor = setupLeftMotor()
-    #leftMotor.forward(255, speed)
 
-    rightMotor = setupRightMotor()
-    rightMotor.forward(255, speed)
+    if wheel == "left":
+        cMotor = setupLeftMotor()
 
+    else:
+        cMotor = setupRightMotor()
+
+    cMotor.forward(pwm, intensity)
 
 
     try:
@@ -36,8 +38,8 @@ def startRobot(sleeptime, speed):
             #print("Left Rotations = " + str(leftMotor.getRotations()))
             #leftMotor.resetRotations()
 
-            print("Right Rotations = " + str(rightMotor.getRotations()))
-            rightMotor.resetRotations()
+            print("Right Rotations = " + str(cMotor.getRotations()))
+            cMotor.resetRotations()
 
             time.sleep(sleeptime)
 
@@ -52,10 +54,12 @@ if __name__ == ("__main__"):
 
     parser = argparse.ArgumentParser()
     parser.add_argument("sleep", help="sleep time in seconds")
-    parser.add_argument("speed", help="wheelspeed")
+    parser.add_argument("intensity", help="value from 0 to 100")
+    parser.add_argument("pwm", help="pwm value from 0 to 255")
+    parser.add_argument("wheel", help="[left, right]")
     args = parser.parse_args()
 
 
 
 
-    startRobot(float(args.sleep), float(args.speed))
+    startRobot(float(args.sleep), float(args.pwm), float(args.intensity), wheel)
