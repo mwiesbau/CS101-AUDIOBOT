@@ -10,13 +10,13 @@ def stopRobot():
 
 def setupLeftMotor():
     # INITIALIZE LEFT MOTOR
-    leftMotor = Motor(33, 35, 37, 18)     ## SETS THE GPIO PINS
+    leftMotor = Motor(33, 35, 37, 18, "left")     ## SETS THE GPIO PINS
     #leftPWM = leftMotor.backward(255, 30)
     return leftMotor
 
 
 def setupRightMotor():
-    rightMotor = Motor(40, 38, 36, 16)    ## SETS THE GPIO PINS
+    rightMotor = Motor(40, 38, 36, 16, "right")    ## SETS THE GPIO PINS
     #rightPWM = rightMotor.backward(255, 30)
     return rightMotor
 
@@ -24,13 +24,18 @@ def setupRightMotor():
 def startRobot(sleeptime, pwm, intensity, wheel):
 
 
-    if wheel == "left":
-        cMotor = setupLeftMotor()
+    #if wheel == "left":
+    #    cMotor = setupLeftMotor()
 
-    else:
-        cMotor = setupRightMotor()
+    #else:
+    leftMotorThread = setupLeftMotor()
+    rightMotorThread = setupRightMotor()
 
-    cMotor.forward(pwm, intensity)
+    leftMotorThread.start()
+    rightMotorThread.start()
+
+    #leftMotorThread.f
+    #cMotor.forward(pwm, intensity)
 
 
     try:
@@ -38,8 +43,8 @@ def startRobot(sleeptime, pwm, intensity, wheel):
             #print("Left Rotations = " + str(leftMotor.getRotations()))
             #leftMotor.resetRotations()
 
-            print("Right Rotations = " + str(cMotor.getRotations()))
-            cMotor.resetRotations()
+            #print("Right Rotations = " + str(cMotor.getRotations()))
+            #cMotor.resetRotations()
 
             time.sleep(sleeptime)
 
