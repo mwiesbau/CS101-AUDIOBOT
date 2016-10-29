@@ -2,6 +2,7 @@ from motorcontrol import Motor
 import threading
 import RPi.GPIO as GPIO
 import time
+import argparse
 
 def stopRobot():
     GPIO.cleanup()
@@ -19,16 +20,16 @@ def setupRightMotor():
     #rightPWM = rightMotor.backward(255, 30)
 
 
-def startRobot(sleeptime):
+def startRobot(sleeptime, speed):
 
     leftMotor = setupLeftMotor()
 
-    leftMotor.forward(255, 35)
+    leftMotor.forward(255, speed)
 
 
     try:
         while True:
-            print("Left Rotations = " leftMotor.getRotations()
+            print("Left Rotations = " + str(leftMotor.getRotations()))
             time.sleep(sleeptime)
 
 
@@ -39,4 +40,13 @@ def startRobot(sleeptime):
 
 
 if __name__ == ("__main__"):
-    startRobot()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("sleep", help="sleep time in seconds")
+    parser.add_argument("speed", help="wheelspeed")
+    args = parser.parse_args()
+
+
+
+
+    startRobot(args.sleep, args.speed)
