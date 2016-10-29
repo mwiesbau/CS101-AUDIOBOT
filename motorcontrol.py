@@ -24,6 +24,10 @@ class Motor(threading.Thread):
 		# SETUP GPIO PINS FOR DECODER
 		GPIO.setup(self.pinRotation, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 		self.rotation = GPIO.input(pinRotation)
+		+        print("Starting " + self.name + " motor")
+
+		# PULSE WIDTH MODULATION SET TO FREQ 255		  		# PULSE WIDTH MODULATION SET TO FREQ 255
+		self.pwm = GPIO.PWM(self.pwmPin, 255)
 
 
 	def countRotations(self, channel):
