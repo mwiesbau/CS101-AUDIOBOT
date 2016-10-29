@@ -28,25 +28,28 @@ def startRobot(sleeptime, pwm, intensity, wheel):
     #    cMotor = setupLeftMotor()
 
     #else:
-    leftMotorThread = setupLeftMotor()
-    rightMotorThread = setupRightMotor()
-
-    leftMotorThread.start()
-    rightMotorThread.start()
+    leftMotor = setupLeftMotor()
+    rightMotor = setupRightMotor()
 
 
-
-    #leftMotorThread.f
-    #cMotor.forward(pwm, intensity)
-
+    leftMotor.forward(pwm, intensity)
+    rightMotor.forward(pwm, intensity)
 
     try:
         while True:
-            print("Left Rotations = " + str(leftMotorThread.getRotations()))
-            #leftMotor.resetRotations()
 
-            print("Right Rotations = " + str(rightMotorThread.getRotations()))
-            #cMotor.resetRotations()
+
+            leftRot = leftMotor.getRotations()
+            rightRot = rightMotor.getRotations()
+
+            if leftRot > rightRot:
+                rightMotor.increaseForward()
+
+            if leftRot < rightRot:
+                rightMotor.decreaseForward()
+
+            print("LR = " + str(leftMotor.getRotations()) + "\tRR = " + str(rightMotor.getRotations()))
+
 
             time.sleep(sleeptime)
 

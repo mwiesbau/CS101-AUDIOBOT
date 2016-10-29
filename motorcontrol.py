@@ -7,15 +7,13 @@ import threading
 class Motor(threading.Thread):
 
 
-	def __init__(self, pwmPin, pinRed, pinBlack, pinRotation, name):
-		threading.Thread.__init__(self)
+	def __init__(self, pwmPin, pinRed, pinBlack, pinRotation):
 
 		self.pwmPin = pwmPin
 		self.pinRed = pinRed
 		self.pinBlack = pinBlack
 		self.pinRotation = pinRotation
 		self.counter = 0
-		self.name = name
 
 		# SETUP GPIO PINS FOR THE MOTOR
 		GPIO.setmode(GPIO.BOARD)
@@ -28,14 +26,6 @@ class Motor(threading.Thread):
 		self.rotation = GPIO.input(pinRotation)
 
 
-
-
-	def run(self):
-		print("Starting " + self.name + " motor")
-		# PULSE WIDTH MODULATION SET TO FREQ 255
-		self.pwm = GPIO.PWM(self.pwmPin, 255)
-
-
 	def countRotations(self, channel):
 		self.counter += 1
 
@@ -45,9 +35,14 @@ class Motor(threading.Thread):
 	def resetRotations(self):
 		self.counter = 0
 		
-		
+	def decreaseForward(self):
+		self.forward(255, self.duty - 1)
+
+	def increaseForward(self):
+		self.forward(255, self.duty + 1)
 	
-	def forward(self, frequency, duty=100):		
+	def forward(self, frequency, duty=100):
+		self.duty = duty
 		GPIO.add_event_detect(self.pinRotation, GPIO.RISING, callback = self.countRotations)
 		self.pwm.start(duty)
 		GPIO.output(self.pinRed, GPIO.HIGH)
@@ -55,6 +50,7 @@ class Motor(threading.Thread):
 		
 
 	def backward(self, frequency, duty=100):
+		self.duty
 		GPIO.add_event_detect(self.pinRotation, GPIO.RISING, callback=self.countRotations)
 		self.pwm.start(duty)
 		GPIO.output(self.pinRed, GPIO.LOW)
