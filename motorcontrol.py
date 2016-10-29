@@ -8,6 +8,8 @@ class Motor(threading.Thread):
 
 
 	def __init__(self, pwmPin, pinRed, pinBlack, pinRotation, name):
+		threading.Thread.__init__(self)
+
 		self.pwmPin = pwmPin
 		self.pinRed = pinRed
 		self.pinBlack = pinBlack
@@ -26,7 +28,7 @@ class Motor(threading.Thread):
 		self.rotation = GPIO.input(pinRotation)
 
 
-		threading.Thread.__init__(self)
+
 
 
 	def run(self):
