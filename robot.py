@@ -62,4 +62,4 @@ if __name__ == ("__main__"):
 
 
 
-    startRobot(float(args.sleep), float(args.pwm), float(args.intensity), wheel)
+    startRobot(float(args.sleep), float(args.pwm), float(args.intensity), args.wheel)
