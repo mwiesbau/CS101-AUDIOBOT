@@ -22,15 +22,22 @@ def setupRightMotor():
 
 def startRobot(sleeptime, speed):
 
-    leftMotor = setupLeftMotor()
+    #leftMotor = setupLeftMotor()
+    #leftMotor.forward(255, speed)
 
-    leftMotor.forward(255, speed)
+    rightMotor = setupRightMotor()
+    rightMotor.forward(255, speed)
+
 
 
     try:
         while True:
-            print("Left Rotations = " + str(leftMotor.getRotations()))
-            leftMotor.resetRotations()
+            #print("Left Rotations = " + str(leftMotor.getRotations()))
+            #leftMotor.resetRotations()
+
+            print("Right Rotations = " + str(rightMotor.getRotations()))
+            rightMotor.resetRotations()
+
             time.sleep(sleeptime)
 
 
