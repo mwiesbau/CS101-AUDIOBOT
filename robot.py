@@ -47,7 +47,7 @@ def startRobot(sleeptime, pwm, intensity):
                 rightMotor.increaseForward()
 
             if leftRot < rightRot:
-                rightMotor.decreaseForward()
+                leftMotor.increaseForward()
 
             print("LR = " + str(leftMotor.getRotations()) + "\tRR = " + str(rightMotor.getRotations()))
 
