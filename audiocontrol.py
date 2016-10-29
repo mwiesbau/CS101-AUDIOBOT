@@ -1,10 +1,9 @@
 import pyaudio
 import numpy as np
-import sys
 import audioop
 import math
 import time
-import publish
+import publishToTipboard
 
 audio = pyaudio.PyAudio()
 stream = audio.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True,
@@ -25,13 +24,13 @@ while True:
     # SEND THE DB READING TO TIPBOARD ########################################################
     decibel = 20 * math.log10(rms)
     if decibel > 60:
-        publish.update_just_value_config("noise", "yellow")
+        publishToTipboard.update_just_value_config("noise", "yellow")
     elif decibel > 75:
-        publish.update_just_value_config("noise", "red")
+        publishToTipboard.update_just_value_config("noise", "red")
     else:
-        publish.update_just_value_config("noise", "green")
+        publishToTipboard.update_just_value_config("noise", "green")
 
-    publish.update_just_value("noise", "Current Level", "Decibel", str(round(decibel,0)))
+    publishToTipboard.update_just_value("noise", "Current Level", "Decibel", str(round(decibel,0)))
     #########################################################################################
 
 

@@ -31,17 +31,19 @@ class Motor():
 		self.pwm = GPIO.PWM(self.pwmPin, 255)
 
 
-	def countRotation(self, channel):
+	def countRotations(self, channel):
 		self.counter += 1
-		print(self.counter)
-		#if self.counter == 10:
-		#	self.pwm.stop()
 
+	def getRotations(self):
+		return self.counter
+
+	def resetRotations(self):
+		self.counter = 0
 		
 		
 	
 	def forward(self, frequency, duty=100):		
-		GPIO.add_event_detect(self.pinRotation, GPIO.RISING, callback = self.countRotation)
+		GPIO.add_event_detect(self.pinRotation, GPIO.RISING, callback = self.countRotations)
 		self.pwm.start(duty)
 		GPIO.output(self.pinRed, GPIO.HIGH)
 		GPIO.output(self.pinBlack, GPIO.LOW)
@@ -65,12 +67,9 @@ def teardown():
 if __name__ == "__main__":
 	
 	# INITIALIZE RIGHT MOTOR
-	rightMotor = Motor(40, 38, 36, 16)
-	rightPWM = rightMotor.backward(255, 30)
+
 	
-	# INITIALIZE LEFT MOTOR
-	leftMotor = Motor(33, 35, 37, 18)
-	leftPWM = leftMotor.backward(255, 30)
+
 
 	time.sleep(20)
 #	rightMotor.stop()

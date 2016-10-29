@@ -1,0 +1,42 @@
+from motorcontrol import Motor
+import threading
+import RPi.GPIO as GPIO
+import time
+
+def stopRobot():
+    GPIO.cleanup()
+
+
+def setupLeftMotor():
+    # INITIALIZE LEFT MOTOR
+    leftMotor = Motor(33, 35, 37, 18)     ## SETS THE GPIO PINS
+    #leftPWM = leftMotor.backward(255, 30)
+    return leftMotor
+
+
+def setupRightMotor():
+    rightMotor = Motor(40, 38, 36, 16)    ## SETS THE GPIO PINS
+    #rightPWM = rightMotor.backward(255, 30)
+
+
+def startRobot(sleeptime):
+
+    leftMotor = setupLeftMotor()
+
+    leftMotor.forward(255, 35)
+
+
+    try:
+        while True:
+            print("Left Rotations = " leftMotor.getRotations()
+            time.sleep(sleeptime)
+
+
+
+    except KeyboardInterrupt:   # EXIT ON CTRL+C
+        stopRobot()
+        pass
+
+
+if __name__ == ("__main__"):
+    startRobot()
