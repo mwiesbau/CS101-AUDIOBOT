@@ -18,6 +18,7 @@ def setupLeftMotor():
 def setupRightMotor():
     rightMotor = Motor(40, 38, 36, 16)    ## SETS THE GPIO PINS
     #rightPWM = rightMotor.backward(255, 30)
+    return rightMotor
 
 
 def startRobot(sleeptime, speed):
