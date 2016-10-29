@@ -24,14 +24,23 @@ this will install all the Python dependencies.
 
 ## USE
 
-### audiobot.py
+### robot.py
+This is the main class and starts the robot control.
+Contains the logic needed for the demo.
 
-### publish.py
+### motorcontrol.py
+This file contains all the movement logic for the robot
+
+### audiocontrol.py
+This file controls the audioinput and evaluates the DB level
+
+### publishToTipboard.py
+Contains the functions to publish the robot metrics to the Tipboard web interface
 
 ### tipboard folder
 #### Dockerfile
 Contains the docker build script for the Tipboard docker image.
 
-#### layout_config_
+#### layout_config
 
 
