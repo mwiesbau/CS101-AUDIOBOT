@@ -3,19 +3,17 @@
 import RPi.GPIO as GPIO
 import time
 import threading
-from threading import Thread
 
-class Motor():
+class Motor(threading.Thread):
 
 
-	
-	def __init__(self, pwmPin, pinRed, pinBlack, pinRotation):
+	def __init__(self, pwmPin, pinRed, pinBlack, pinRotation, name):
 		self.pwmPin = pwmPin
 		self.pinRed = pinRed
 		self.pinBlack = pinBlack
 		self.pinRotation = pinRotation
 		self.counter = 0
-	
+		self.name = name
 
 		# SETUP GPIO PINS FOR THE MOTOR
 		GPIO.setmode(GPIO.BOARD)
@@ -27,6 +25,9 @@ class Motor():
 		GPIO.setup(self.pinRotation, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 		self.rotation = GPIO.input(pinRotation)
 
+
+	def run(self):
+		print("Starting " + self.name + " motor")
 		# PULSE WIDTH MODULATION SET TO FREQ 255
 		self.pwm = GPIO.PWM(self.pwmPin, 255)
 
@@ -50,6 +51,7 @@ class Motor():
 		
 
 	def backward(self, frequency, duty=100):
+		GPIO.add_event_detect(self.pinRotation, GPIO.RISING, callback=self.countRotations)
 		self.pwm.start(duty)
 		GPIO.output(self.pinRed, GPIO.LOW)
 		GPIO.output(self.pinBlack, GPIO.HIGH)
