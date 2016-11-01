@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 import time
 
-hostname = "172.17.0.2"
+hostname = "10.0.75.2"
 port = "7272"
 api_key = "audiobot"
 
