@@ -1,17 +1,17 @@
 details:
-    page_title: Empty Dashboard
+    page_title: This is something
 layout:
     - row_1_of_2:
         - col_1_of_4:
             - tile_template: just_value
               tile_id: noise
-              title: Noise Level
+              title: "Noise Level"
               classes:
 
         - col_1_of_4:
-            - tile_template: empty
-              tile_id: test
-              title: TEST2
+            - tile_template: just_value
+              tile_id: avg
+              title: "Average Noise"
               classes:
 
         - col_1_of_4:
@@ -19,7 +19,6 @@ layout:
               tile_id: empty
               title: Empty Tile
               classes:
-
         - col_1_of_4:
             - tile_template: empty
               tile_id: empty

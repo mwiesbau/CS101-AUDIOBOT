@@ -10,6 +10,9 @@ stream = audio.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True,
                     frames_per_buffer=2**10)
 
 counter = 0
+avgCount = 0
+decibelSum = 0
+avgDecibel = 0
 
 while True:
     counter += 1
@@ -30,6 +33,14 @@ while True:
     else:
         publishToTipboard.update_just_value_config("noise", "green")
 
+    #Take average of decibels #######################################################
+    avgCount += 1
+    decibelSum += int(decibel)
+    avgDecibel = decibelSum / avgCount
+
+    #publish results to tipboard#######################################################
+    
+    publishToTipboard.update_just_value("avg", "Average Level", "Decibel", str(round(avgDecibel,0)))
     publishToTipboard.update_just_value("noise", "Current Level", "Decibel", str(round(decibel,0)))
     #########################################################################################
 
