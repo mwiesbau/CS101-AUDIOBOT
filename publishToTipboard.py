@@ -14,6 +14,28 @@ api_key = "audiobot"
 
 
 
+def update_big_value(tile, description, maintitle, mainvalue, title1, value1, title2, \
+                     value2, title3, value3, title4, value4):
+    #### THE CONNECTION INFO TO THE TIPBOARD APP
+    url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"
+        
+    ######  THE TEXT TO BE PUBLISHED ####
+    text_data = {'title': maintitle, 'description': description, 'big-value': mainvalue, \
+                 'upper-left-label': title1, 'upper-left-value': value1, \
+                 'lower-left-label': title2, 'lower-left-value': value2, \
+                 'upper-right-label': title3, 'upper-right-value': value3, \
+                 'lower-right-label': title4, 'lower-right-value': value4,}
+    json_text = json.dumps(text_data)  # CONVERT TO JSON
+
+    ###### THE PAYLOAD
+    payload = {'tile': "big_value", 'key': tile, 'data': json_text}
+    #headers = {'content-type': 'application/json'}
+   
+
+    ##### SEND DATA TO TILE IN TIPBOARD
+    r = requests.post(url, data=payload)
+    #print r.text
+
 def update_just_value(tile, title, description, value):
     #### THE CONNECTION INFO TO THE TIPBOARD APP
     url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"

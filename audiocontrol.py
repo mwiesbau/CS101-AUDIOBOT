@@ -9,10 +9,14 @@ audio = pyaudio.PyAudio()
 stream = audio.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True,
                     frames_per_buffer=2**10)
 
+threshold = 40.0
 counter = 0
 avgCount = 0
 decibelSum = 0
 avgDecibel = 0
+percentSpeed = 0
+maxSpeed = 140.0 - threshold
+adjustedDecibel = 0.0
 
 while True:
     counter += 1
@@ -33,13 +37,25 @@ while True:
     else:
         publishToTipboard.update_just_value_config("noise", "green")
 
+    #I figured the car shouldnt move when the room is fairly quiet so I set it up so speed is 0
+    #unless the DB is 40 or higher, can be easily adjusted.
+    adjustedDecibel = decibel - threshold
+    if(adjustedDecibel < 0):
+        adjustedDecibel = 0
+    percentSpeed = (adjustedDecibel / maxSpeed)*100
+
     #Take average of decibels #######################################################
     avgCount += 1
     decibelSum += int(decibel)
     avgDecibel = decibelSum / avgCount
 
     #publish results to tipboard#######################################################
-    
+    publishToTipboard.update_big_value("bigvalue", "Trump? really?", "Current Speed", \
+                                       "{:3.2f}%".format(percentSpeed), "Upper Left", \
+                                       str(round(avgDecibel,0)), "Lower Left", \
+                                       str(round(avgDecibel,0)), "Upper Right", \
+                                       str(round(avgDecibel,0)), "Lower Right", \
+                                       str(round(avgDecibel,0)))
     publishToTipboard.update_just_value("avg", "Average Level", "Decibel", str(round(avgDecibel,0)))
     publishToTipboard.update_just_value("noise", "Current Level", "Decibel", str(round(decibel,0)))
     #########################################################################################
@@ -48,6 +64,7 @@ while True:
     ## PRINT TO CONSOLE #####
     bars = "#" * int((decibel - 35))
     print("%05d %03dDB %s"%(counter,decibel,bars))
+    
     
     time.sleep(.1)
 
