@@ -27,9 +27,9 @@ layout:
 
     - row_1_of_2:
         - col_1_of_4:
-            - tile_template: empty
-              tile_id: empty
-              title: Empty Tile
+            - tile_template: norm_chart
+              tile_id: normchart
+              title: "Line chart for what idk"
               classes:
 
         - col_1_of_4:
