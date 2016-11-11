@@ -35,6 +35,17 @@ def update_big_value(tile, description, maintitle, mainvalue, title1, value1, ti
     r = requests.post(url, data=payload)
     #print r.text
 
+def update_big_value_config(tile, color="", background="False"):
+    url = "http://" + hostname + ":" + port + "/api/v0.1/" + api_key + "/tileconfig/" + tile
+
+    value_data = {'big_value_color': color,                  
+                  'fading_background': background}
+
+    json_value_data = json.dumps(value_data)  # CONVERT TO JSON
+    payload = {'value': json_value_data}
+    r = requests.post(url, data=payload)
+   #print r.text
+
 def update_simple_percentage(tile, title, subtitle, printedvalue, leftvalue, rightvalue, \
                              leftlabel, rightlabel):
     #### THE CONNECTION INFO TO THE TIPBOARD APP
@@ -92,6 +103,22 @@ def update_just_value_config(tile, color="", background="False"):
     payload = {'value': json_value_data}
     r = requests.post(url, data=payload)
    #print r.text
+
+def update_norm_chart(tile, title, description, data):
+    #### THE CONNECTION INFO TO THE TIPBOARD APP
+    url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"
+        
+    ######  THE TEXT TO BE PUBLISHED ####
+    text_data = {'title': title, 'description': description, 'plot_data': data}
+    json_text = json.dumps(text_data)  # CONVERT TO JSON
+
+    ###### THE PAYLOAD
+    payload = {'tile': "norm_chart", 'key': tile, 'data': json_text}
+    #headers = {'content-type': 'application/json'}
+   
+    ##### SEND DATA TO TILE IN TIPBOARD
+    r = requests.post(url, data=payload)
+    #print r.text
     
 def update_text(tile, string=""):
     """
