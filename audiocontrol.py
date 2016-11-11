@@ -61,10 +61,10 @@ while True:
         highestSpeed = percentSpeed
 
     # SEND SPEED(simple_percent) ################################################################
-    if  percentSpeed > 15:
+    if  percentSpeed > 65:
         publishToTipboard.update_simple_percentage_config("simplepercentage", "green")
-    elif percentSpeed > 10:
-        publishToTipboard.update_siimple_percentage_config("simplepercentage", "yellow")
+    elif percentSpeed > 30:
+        publishToTipboard.update_simple_percentage_config("simplepercentage", "yellow")
     else:
         publishToTipboard.update_simple_percentage_config("simplepercentage", "red")
 
