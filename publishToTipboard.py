@@ -13,7 +13,6 @@ port = "7272"
 api_key = "audiobot"
 
 
-
 def update_big_value(tile, description, maintitle, mainvalue, title1, value1, title2, \
                      value2, title3, value3, title4, value4):
     #### THE CONNECTION INFO TO THE TIPBOARD APP
@@ -36,6 +35,36 @@ def update_big_value(tile, description, maintitle, mainvalue, title1, value1, ti
     r = requests.post(url, data=payload)
     #print r.text
 
+def update_simple_percentage(tile, title, subtitle, printedvalue, leftvalue, rightvalue, \
+                             leftlabel, rightlabel):
+    #### THE CONNECTION INFO TO THE TIPBOARD APP
+    url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"
+        
+    ######  THE TEXT TO BE PUBLISHED ####
+    text_data = {'title': title, 'subtitle': subtitle, 'big_value': printedvalue, \
+                 'left_value': leftvalue, 'right_value': rightvalue, 'left_label': leftlabel, \
+                 'right_label': rightlabel,}
+    json_text = json.dumps(text_data)  # CONVERT TO JSON
+
+    ###### THE PAYLOAD
+    payload = {'tile': "simple_percentage", 'key': tile, 'data': json_text}
+    #headers = {'content-type': 'application/json'}
+
+    ##### SEND DATA TO TILE IN TIPBOARD
+    r = requests.post(url, data=payload)
+    #print r.text
+
+def update_simple_percentage_config(tile, color="", background="False"):
+    url = "http://" + hostname + ":" + port + "/api/v0.1/" + api_key + "/tileconfig/" + tile
+
+    value_data = {'big_value_color': color,                  
+                  'fading_background': background}
+
+    json_value_data = json.dumps(value_data)  # CONVERT TO JSON
+    payload = {'value': json_value_data}
+    r = requests.post(url, data=payload)
+   #print r.text
+    
 def update_just_value(tile, title, description, value):
     #### THE CONNECTION INFO TO THE TIPBOARD APP
     url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"
@@ -63,9 +92,7 @@ def update_just_value_config(tile, color="", background="False"):
     payload = {'value': json_value_data}
     r = requests.post(url, data=payload)
    #print r.text
-
-
-
+    
 def update_text(tile, string=""):
     """
     :param tile:test

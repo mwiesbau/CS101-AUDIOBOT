@@ -1,5 +1,5 @@
 details:
-    page_title: This is something
+    page_title: AudioRobot
 layout:
     - row_1_of_2:
         - col_1_of_4:
@@ -20,9 +20,9 @@ layout:
               title: "WTF America"
               classes:
         - col_1_of_4:
-            - tile_template: empty
-              tile_id: empty
-              title: Empty Tile
+            - tile_template: simple_percentage
+              tile_id: simplepercentage
+              title: "Speed"
               classes:
 
     - row_1_of_2:
