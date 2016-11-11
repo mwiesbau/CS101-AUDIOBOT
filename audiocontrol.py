@@ -60,6 +60,14 @@ while True:
     if(percentSpeed > highestSpeed):
         highestSpeed = percentSpeed
 
+    # SEND SPEED(big_data) ################################################################
+    if  percentSpeed > 65:
+        publishToTipboard.update_big_value_config("bigvalue", "green")
+    elif percentSpeed > 30:
+        publishToTipboard.update_big_value_config("bigvalue", "yellow")
+    else:
+        publishToTipboard.update_big_value_config("bigvalue", "red")
+
     # SEND SPEED(simple_percent) ################################################################
     if  percentSpeed > 65:
         publishToTipboard.update_simple_percentage_config("simplepercentage", "green")
@@ -69,15 +77,17 @@ while True:
         publishToTipboard.update_simple_percentage_config("simplepercentage", "red")
 
     #publish results to tipboard#######################################################
-    publishToTipboard.update_simple_percentage("simplepercentage","Percent Speed", "maybe this tile instead?", \
-                                               "{:3.0f}%".format(percentSpeed), "idk", \
-                                               "{:3.0f}%".format(highestSpeed), "something", "Highest Speed")
     publishToTipboard.update_big_value("bigvalue", "Trump? really?", "Current Speed", \
                                        "{:3.2f}%".format(percentSpeed), "Upper Left", \
                                        str(round(avgDecibel,0)), "Lower Left", \
                                        str(round(avgDecibel,0)), "Upper Right", \
                                        str(round(avgDecibel,0)), "Lower Right", \
                                        str(round(avgDecibel,0)))
+    publishToTipboard.update_simple_percentage("simplepercentage","Percent Speed", \
+                                               "speeeed","{:3.0f}%".format(percentSpeed), \
+                                               "idk","{:3.0f}%".format(highestSpeed), \
+                                               "something", "Highest Speed")
+    publishToTipboard.update_norm_chart("normchart", "hopefully this a chart", "chart pls", (0, 2))
     publishToTipboard.update_just_value("avg", "Average Level", "Decibel", str(round(avgDecibel,0)))
     publishToTipboard.update_just_value("noise", "Current Level", "Decibel", str(round(decibel,0)))
         
