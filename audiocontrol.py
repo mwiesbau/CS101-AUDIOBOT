@@ -31,12 +31,8 @@ while True:
 
     # SEND THE DB READING TO TIPBOARD ########################################################
     decibel = 20 * math.log10(rms)
-    if decibel > 75:
-        publishToTipboard.update_just_value_config("noise", "green")
-    elif decibel > 60:
-        publishToTipboard.update_just_value_config("noise", "yellow")
-    else:
-        publishToTipboard.update_just_value_config("noise", "red")
+    publishToTipboard.update_just_value_config("rednoise", "red")
+    publishToTipboard.update_just_value_config("bluenoise", "blue")
 
     #Take average of decibels #######################################################
     avgCount += 1
@@ -44,12 +40,8 @@ while True:
     avgDecibel = decibelSum / avgCount
 
     # SEND AVG DB ################################################################
-    if avgDecibel > 75:
-        publishToTipboard.update_just_value_config("avg", "green")
-    elif avgDecibel > 60:
-        publishToTipboard.update_just_value_config("avg", "yellow")
-    else:
-        publishToTipboard.update_just_value_config("avg", "red")
+    publishToTipboard.update_just_value_config("redavg", "red")
+    publishToTipboard.update_just_value_config("blueavg", "blue")
 
     #I figured the car shouldnt move when the room is fairly quiet so I set it up so speed is 0
     #unless the DB is 40 or higher, can be easily adjusted.
@@ -61,35 +53,39 @@ while True:
         highestSpeed = percentSpeed
 
     # SEND SPEED(big_data) ################################################################
-    if  percentSpeed > 65:
-        publishToTipboard.update_big_value_config("bigvalue", "green")
-    elif percentSpeed > 30:
-        publishToTipboard.update_big_value_config("bigvalue", "yellow")
-    else:
-        publishToTipboard.update_big_value_config("bigvalue", "red")
+    publishToTipboard.update_big_value_config("redbigvalue", "red")
+    publishToTipboard.update_big_value_config("bluebigvalue", "blue")
 
     # SEND SPEED(simple_percent) ################################################################
-    if  percentSpeed > 65:
-        publishToTipboard.update_simple_percentage_config("simplepercentage", "green")
-    elif percentSpeed > 30:
-        publishToTipboard.update_simple_percentage_config("simplepercentage", "yellow")
-    else:
-        publishToTipboard.update_simple_percentage_config("simplepercentage", "red")
+    publishToTipboard.update_simple_percentage_config("redsimplepercentage", "red")
+    publishToTipboard.update_simple_percentage_config("bluesimplepercentage", "blue")
 
     #publish results to tipboard#######################################################
-    publishToTipboard.update_big_value("bigvalue", "Trump? really?", "Current Speed", \
+    publishToTipboard.update_big_value("redbigvalue", "Trump? really?", "Current Speed", \
                                        "{:3.2f}%".format(percentSpeed), "Upper Left", \
                                        str(round(avgDecibel,0)), "Lower Left", \
                                        str(round(avgDecibel,0)), "Upper Right", \
                                        str(round(avgDecibel,0)), "Lower Right", \
                                        str(round(avgDecibel,0)))
-    publishToTipboard.update_simple_percentage("simplepercentage","Percent Speed", \
+    publishToTipboard.update_big_value("bluebigvalue", "Trump? really?", "Current Speed", \
+                                       "{:3.2f}%".format(percentSpeed), "Upper Left", \
+                                       str(round(avgDecibel,0)), "Lower Left", \
+                                       str(round(avgDecibel,0)), "Upper Right", \
+                                       str(round(avgDecibel,0)), "Lower Right", \
+                                       str(round(avgDecibel,0)))
+    publishToTipboard.update_simple_percentage("redsimplepercentage","Percent Speed", \
                                                "speeeed","{:3.0f}%".format(percentSpeed), \
                                                "idk","{:3.0f}%".format(highestSpeed), \
                                                "something", "Highest Speed")
-    publishToTipboard.update_norm_chart("normchart", "hopefully this a chart", "chart pls", (0, 2))
-    publishToTipboard.update_just_value("avg", "Average Level", "Decibel", str(round(avgDecibel,0)))
-    publishToTipboard.update_just_value("noise", "Current Level", "Decibel", str(round(decibel,0)))
+    publishToTipboard.update_simple_percentage("bluesimplepercentage","Percent Speed", \
+                                               "speeeed","{:3.0f}%".format(percentSpeed), \
+                                               "idk","{:3.0f}%".format(highestSpeed), \
+                                               "something", "Highest Speed")
+    #publishToTipboard.update_norm_chart("normchart", "hopefully this a chart", "chart pls", (0, 2))#
+    publishToTipboard.update_just_value("redavg", "Average Level", "Decibel", str(round(avgDecibel,0)))
+    publishToTipboard.update_just_value("blueavg", "Average Level", "Decibel", str(round(avgDecibel,0)))
+    publishToTipboard.update_just_value("rednoise", "Current Level", "Decibel", str(round(decibel,0)))
+    publishToTipboard.update_just_value("bluenoise", "Current Level", "Decibel", str(round(decibel,0)))
         
     #########################################################################################
 
