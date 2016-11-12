@@ -31,7 +31,7 @@ while True:
 
     # SEND THE DB READING TO TIPBOARD ########################################################
     decibel = 20 * math.log10(rms)
-    publishToTipboard.update_just_value_config("rednoise", "red")
+    publishToTipboard.update_just_value_config("rednoise", "#FF9618")
     publishToTipboard.update_just_value_config("bluenoise", "blue")
 
     #Take average of decibels #######################################################
@@ -40,7 +40,7 @@ while True:
     avgDecibel = decibelSum / avgCount
 
     # SEND AVG DB ################################################################
-    publishToTipboard.update_just_value_config("redavg", "red")
+    publishToTipboard.update_just_value_config("redavg", "#FF9618")
     publishToTipboard.update_just_value_config("blueavg", "blue")
 
     #I figured the car shouldnt move when the room is fairly quiet so I set it up so speed is 0
@@ -53,39 +53,27 @@ while True:
         highestSpeed = percentSpeed
 
     # SEND SPEED(big_data) ################################################################
-    publishToTipboard.update_big_value_config("redbigvalue", "red")
+    publishToTipboard.update_big_value_config("redbigvalue", "#FF9618")
     publishToTipboard.update_big_value_config("bluebigvalue", "blue")
 
-    # SEND SPEED(simple_percent) ################################################################
-    publishToTipboard.update_simple_percentage_config("redsimplepercentage", "red")
-    publishToTipboard.update_simple_percentage_config("bluesimplepercentage", "blue")
+
 
     #publish results to tipboard#######################################################
     publishToTipboard.update_big_value("redbigvalue", "Trump? really?", "Current Speed", \
-                                       "{:3.2f}%".format(percentSpeed), "Upper Left", \
-                                       str(round(avgDecibel,0)), "Lower Left", \
-                                       str(round(avgDecibel,0)), "Upper Right", \
-                                       str(round(avgDecibel,0)), "Lower Right", \
-                                       str(round(avgDecibel,0)))
+                                       "{:3.2f}%".format(percentSpeed), "Distance", \
+                                       decibelSum/200, "Max Speed", \
+                                       int(highestSpeed))
     publishToTipboard.update_big_value("bluebigvalue", "Trump? really?", "Current Speed", \
-                                       "{:3.2f}%".format(percentSpeed), "Upper Left", \
-                                       str(round(avgDecibel,0)), "Lower Left", \
-                                       str(round(avgDecibel,0)), "Upper Right", \
-                                       str(round(avgDecibel,0)), "Lower Right", \
-                                       str(round(avgDecibel,0)))
-    publishToTipboard.update_simple_percentage("redsimplepercentage","Percent Speed", \
-                                               "speeeed","{:3.0f}%".format(percentSpeed), \
-                                               "idk","{:3.0f}%".format(highestSpeed), \
-                                               "something", "Highest Speed")
-    publishToTipboard.update_simple_percentage("bluesimplepercentage","Percent Speed", \
-                                               "speeeed","{:3.0f}%".format(percentSpeed), \
-                                               "idk","{:3.0f}%".format(highestSpeed), \
-                                               "something", "Highest Speed")
-    #publishToTipboard.update_norm_chart("normchart", "hopefully this a chart", "chart pls", (0, 2))#
+                                       "{:3.2f}%".format(percentSpeed), "Distance", \
+                                       decibelSum/200, "Max Speed", \
+                                       int(highestSpeed))
     publishToTipboard.update_just_value("redavg", "Average Level", "Decibel", str(round(avgDecibel,0)))
     publishToTipboard.update_just_value("blueavg", "Average Level", "Decibel", str(round(avgDecibel,0)))
     publishToTipboard.update_just_value("rednoise", "Current Level", "Decibel", str(round(decibel,0)))
     publishToTipboard.update_just_value("bluenoise", "Current Level", "Decibel", str(round(decibel,0)))
+    publishToTipboard.update_pie_chart("maxspeedpiechart", "Max Speed", "blue", "orange", int(highestSpeed), avgDecibel)
+    publishToTipboard.update_pie_chart("distancepiechart", "Distance", "blue", "orange", \
+                                       avgDecibel, int(highestSpeed))
         
     #########################################################################################
 

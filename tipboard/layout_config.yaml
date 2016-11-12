@@ -20,9 +20,9 @@ layout:
               title: "WTF America"
               classes:
         - col_1_of_4:
-            - tile_template: simple_percentage
-              tile_id: redsimplepercentage
-              title: "Speed"
+            - tile_template: pie_chart
+              tile_id: maxspeedpiechart
+              title: Max Speed
               classes:
 
     - row_1_of_2:
@@ -45,7 +45,7 @@ layout:
               classes:
 
         - col_1_of_4:
-            - tile_template: simple_percentage
-              tile_id: bluesimplepercentage
-              title: "Speed"
+            - tile_template: pie_chart
+              tile_id: distancepiechart
+              title: Bchart
               classes:
