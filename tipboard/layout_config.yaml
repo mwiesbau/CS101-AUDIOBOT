@@ -4,48 +4,48 @@ layout:
     - row_1_of_2:
         - col_1_of_4:
             - tile_template: just_value
-              tile_id: noise
+              tile_id: rednoise
               title: "Noise Level"
               classes:
 
         - col_1_of_4:
             - tile_template: just_value
-              tile_id: avg
+              tile_id: redavg
               title: "Average Noise"
               classes:
 
         - col_1_of_4:
             - tile_template: big_value
-              tile_id: bigvalue
+              tile_id: redbigvalue
               title: "WTF America"
               classes:
         - col_1_of_4:
             - tile_template: simple_percentage
-              tile_id: simplepercentage
+              tile_id: redsimplepercentage
               title: "Speed"
               classes:
 
     - row_1_of_2:
         - col_1_of_4:
-            - tile_template: norm_chart
-              tile_id: normchart
-              title: "Line chart for what idk"
+            - tile_template: just_value
+              tile_id: bluenoise
+              title: "Noise Level"
               classes:
 
         - col_1_of_4:
-            - tile_template: empty
-              tile_id: empty
-              title: Empty Tile
+            - tile_template: just_value
+              tile_id: blueavg
+              title: "Average Noise"
               classes:
 
         - col_1_of_4:
-            - tile_template: empty
-              tile_id: empty
-              title: Empty Tile
+            - tile_template: big_value
+              tile_id: bluebigvalue
+              title: "WTF America"
               classes:
 
         - col_1_of_4:
-            - tile_template: empty
-              tile_id: empty
-              title: Empty Tile
+            - tile_template: simple_percentage
+              tile_id: bluesimplepercentage
+              title: "Speed"
               classes:
