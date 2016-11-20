@@ -4,24 +4,25 @@ layout:
     - row_1_of_2:
         - col_1_of_4:
             - tile_template: just_value
-              tile_id: rednoise
+              tile_id: orangenoise
               title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: just_value
-              tile_id: redavg
+              tile_id: orangeavg
               title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: big_value
-              tile_id: redbigvalue
+              tile_id: orangebigvalue
               title: ""
               classes:
+
         - col_1_of_4:
-            - tile_template: pie_chart
-              tile_id: distancepiechart
+            - tile_template: just_value
+              tile_id: timer
               title: ""
               classes:
 
