@@ -59,18 +59,18 @@ while True:
 
 
     #publish results to tipboard#######################################################
-    publishToTipboard.update_big_value("redbigvalue", "Trump? really?", "Current Speed", \
+    publishToTipboard.update_big_value("redbigvalue", "", "Current Speed", \
                                        "{:3.2f}%".format(percentSpeed), "Distance", \
                                        decibelSum/200, "Max Speed", \
                                        int(highestSpeed))
-    publishToTipboard.update_big_value("bluebigvalue", "Trump? really?", "Current Speed", \
+    publishToTipboard.update_big_value("bluebigvalue", "", "Current Speed", \
                                        "{:3.2f}%".format(percentSpeed), "Distance", \
                                        decibelSum/200, "Max Speed", \
                                        int(highestSpeed))
-    publishToTipboard.update_just_value("redavg", "Average Level", "Decibel", str(round(avgDecibel,0)))
-    publishToTipboard.update_just_value("blueavg", "Average Level", "Decibel", str(round(avgDecibel,0)))
-    publishToTipboard.update_just_value("rednoise", "Current Level", "Decibel", str(round(decibel,0)))
-    publishToTipboard.update_just_value("bluenoise", "Current Level", "Decibel", str(round(decibel,0)))
+    publishToTipboard.update_just_value("redavg", "Average Level", "", str(round(avgDecibel,0)))
+    publishToTipboard.update_just_value("blueavg", "Average Level", "", str(round(avgDecibel,0)))
+    publishToTipboard.update_just_value("rednoise", "Current Level", "", str(round(decibel,0)))
+    publishToTipboard.update_just_value("bluenoise", "Current Level", "", str(round(decibel,0)))
     publishToTipboard.update_pie_chart("maxspeedpiechart", "Max Speed", "blue", "orange", int(highestSpeed), avgDecibel)
     publishToTipboard.update_pie_chart("distancepiechart", "Distance", "blue", "orange", \
                                        avgDecibel, int(highestSpeed))

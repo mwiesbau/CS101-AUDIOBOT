@@ -5,47 +5,47 @@ layout:
         - col_1_of_4:
             - tile_template: just_value
               tile_id: rednoise
-              title: "Noise Level"
+              title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: just_value
               tile_id: redavg
-              title: "Average Noise"
+              title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: big_value
               tile_id: redbigvalue
-              title: "WTF America"
+              title: ""
               classes:
         - col_1_of_4:
             - tile_template: pie_chart
-              tile_id: maxspeedpiechart
-              title: Max Speed
+              tile_id: distancepiechart
+              title: ""
               classes:
 
     - row_1_of_2:
         - col_1_of_4:
             - tile_template: just_value
               tile_id: bluenoise
-              title: "Noise Level"
+              title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: just_value
               tile_id: blueavg
-              title: "Average Noise"
+              title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: big_value
               tile_id: bluebigvalue
-              title: "WTF America"
+              title: ""
               classes:
 
         - col_1_of_4:
             - tile_template: pie_chart
-              tile_id: distancepiechart
-              title: Bchart
+              tile_id: maxspeedpiechart
+              title: ""
               classes:
