@@ -18,7 +18,7 @@ percentSpeed = 0
 highestSpeed = 0
 maxSpeed = 140.0 - threshold
 adjustedDecibel = 0.0
-seconds = 330
+seconds = 300
 
 while True:
     counter += 1
