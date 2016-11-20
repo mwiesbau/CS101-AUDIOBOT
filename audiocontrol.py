@@ -18,14 +18,14 @@ percentSpeed = 0
 highestSpeed = 0
 maxSpeed = 140.0 - threshold
 adjustedDecibel = 0.0
-seconds = 300
+seconds = 330
 
 while True:
     counter += 1
     data = np.fromstring(stream.read(2**10),dtype=np.int16)
     rms = audioop.rms(data,2)
     
-    seconds = seconds-1
+    seconds -= 3
     # WEIRD ISSUE ON SOME WINDOWS PC's 
     if rms == 0:
         continue
@@ -78,7 +78,7 @@ while True:
     #COMBINED MEASUREMENTS############
     publishToTipboard.update_pie_chart("maxspeedpiechart", "Max Speed", "blue", "orange", int(highestSpeed), avgDecibel)
     publishToTipboard.update_just_value_config("timer", "black")
-    publishToTipboard.update_just_value("timer", "Timer", "", (int)(seconds/10))
+    publishToTipboard.update_just_value("timer", "Timer", "", (seconds//10))
         
     #########################################################################################
 
