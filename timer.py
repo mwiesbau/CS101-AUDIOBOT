@@ -5,22 +5,22 @@ import publishToTipboard
 seconds = 30
 while seconds >= 0:
     publishToTipboard.update_just_value_config("timer", "#FF9618")
-    publishToTipboard.update_just_value("timer", "Timer", "", seconds)
+    publishToTipboard.update_just_value("timer", "Orange Turn", "", seconds)
     time.sleep(1)
     seconds -= 1
 #BREAK STATE
-publishToTipboard.update_state()    
+#publishToTipboard.update_state()    
 seconds = 15
 while seconds >= 0:
     publishToTipboard.update_just_value_config("timer", "black")
-    publishToTipboard.update_just_value("timer", "Timer", "", seconds)
+    publishToTipboard.update_just_value("timer", "Break", "", seconds)
     time.sleep(1)
     seconds -= 1
 #BLUE STATE
-publishToTipboard.update_state()
+#publishToTipboard.update_state()
 seconds = 30
 while seconds >= 0:
     publishToTipboard.update_just_value_config("timer", "blue")
-    publishToTipboard.update_just_value("timer", "Timer", "", seconds)
+    publishToTipboard.update_just_value("timer", "Blue Turn", "", seconds)
     time.sleep(1)
     seconds -= 1
