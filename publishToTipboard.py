@@ -7,16 +7,13 @@ import requests
 import json
 from datetime import datetime
 import time
+import globalz
+import mod
 
 hostname = "10.0.75.2"
 port = "7272"
 api_key = "audiobot"
 
-global state
-global orangeDecibelSum
-global orangeAvgCount
-global blueDecibelSum
-global blueAvgCount
 
 def update_big_value(tile, description, maintitle, mainvalue, title1, value1, \
                      title3, value3):
@@ -52,15 +49,16 @@ def update_big_value_config(tile, color="", background="False"):
 def update_just_value(tile, title, description, value):
     #### THE CONNECTION INFO TO THE TIPBOARD APP
     url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"
-    if tile == 'orangeavg' and state == 0:
-        orangeDecibelSum += value
-        orangeAvgCount += 1
-        value = orangeDecibelSum / orangeAvgCount
+    if tile == 'orangeavg' and globalz.state == 0:
+        globalz.orangeDecibelSum += float(value)
+        globalz.orangeAvgCount += 1
+        value = globalz.orangeDecibelSum / globalz.orangeAvgCount
+        print globalz.state
         
-    if tile == 'blueavg' and state == 2:
-        blueDecibelSum += value
-        blueAvgCount += 1
-        value = blueDecibelSum / blueAvgCount
+    if tile == 'blueavg' and globalz.state == 2:
+        globalz.blueDecibelSum += float(value)
+        globalz.blueAvgCount += 1
+        value = globalz.blueDecibelSum / globalz.blueAvgCount
         
     ######  THE TEXT TO BE PUBLISHED ####
     text_data = {'title': title, 'description': description, 'just-value': value}
@@ -247,7 +245,39 @@ def update_date_time(tile):
     r = requests.post(url, data=payload)
 
     #print r.text
-
+class Solution:
+    # @return an integer
+    def atoi(self, str):
+        pointer = 0
+        isNegative = False
+        while pointer<len(str) and str[pointer]==' ':
+            pointer += 1
+        if pointer==len(str):
+            return 0
+        if str[pointer] == '-':
+            isNegative = True
+            pointer += 1
+        elif str[pointer] == '+':
+            isNegative = False
+            pointer += 1
+        solution = 0
+        for pointer in range(pointer, len(str)):
+            if not str[pointer].isdigit():
+                break
+            else:
+                solution *= 10
+                solution += int(str[pointer])
+                
+        #This is because leetcode question is not prepared to Python but to Java/C so we truncate it
+        if not isNegative and solution > 2147483647:
+            return 2147483647
+        elif isNegative and solution > 2147483648:
+            return -2147483648
+            
+        if isNegative:
+            return -1 * solution;
+        else:
+            return solution;
 ### PUBLISH FANCY LISTING
 #data = [
 #    {"label": "Barbecue",
