@@ -46,12 +46,11 @@ while True:
 
         #I figured the car shouldnt move when the room is fairly quiet so I set it up so speed is 0
         #unless the DB is 40 or higher, can be easily adjusted.
-        adjustedDecibel = decibel - threshold
-        if(adjustedDecibel < 0):
-            adjustedDecibel = 0
-        percentSpeed = (adjustedDecibel / maxSpeed)*100
-        if(percentSpeed > highestSpeed):
-            highestSpeed = percentSpeed
+        #adjustedDecibel = decibel - threshold
+        #if(adjustedDecibel < 0#adjustedDecibel = 0
+        #percentSpeed = (adjustedDecibel / maxSpeed)*100
+        #if(percentSpeed > highestSpeed):
+            #highestSpeed = percentSpeed
         #publish results to tipboard#######################################################   
         publishToTipboard.update_just_value_config("orangenoise", "#FF9618")
         publishToTipboard.update_just_value_config("orangeavg", "#FF9618")
@@ -78,12 +77,12 @@ while True:
 
         #I figured the car shouldnt move when the room is fairly quiet so I set it up so speed is 0
         #unless the DB is 40 or higher, can be easily adjusted.
-        adjustedDecibel = decibel - threshold
-        if(adjustedDecibel < 0):
-            adjustedDecibel = 0
-        percentSpeed = (adjustedDecibel / maxSpeed)*100
-        if(percentSpeed > highestSpeed):
-            highestSpeed = percentSpeed
+       # adjustedDecibel = decibel - threshold
+        #if(adjustedDecibel < 0):
+            #adjustedDecibel = 0
+        #percentSpeed = (adjustedDecibel / maxSpeed)*100
+        #if(percentSpeed > highestSpeed):
+            #highestSpeed = percentSpeed
         #publish results to tipboard#######################################################
         publishToTipboard.update_just_value_config("bluenoise", "blue")
         publishToTipboard.update_just_value_config("blueavg", "blue")

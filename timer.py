@@ -2,14 +2,14 @@ import time
 import publishToTipboard
 
 #ORANGE STATE
-seconds = 30
+seconds = 3
 while seconds >= 0:
     publishToTipboard.update_just_value_config("timer", "#FF9618")
     publishToTipboard.update_just_value("timer", "Orange Turn", "", seconds)
     time.sleep(1)
     seconds -= 1
 #BREAK STATE
-#publishToTipboard.update_state()    
+publishToTipboard.update_state()    
 seconds = 15
 while seconds >= 0:
     publishToTipboard.update_just_value_config("timer", "black")
@@ -17,7 +17,7 @@ while seconds >= 0:
     time.sleep(1)
     seconds -= 1
 #BLUE STATE
-#publishToTipboard.update_state()
+publishToTipboard.update_state()
 seconds = 30
 while seconds >= 0:
     publishToTipboard.update_just_value_config("timer", "blue")

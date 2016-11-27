@@ -10,6 +10,7 @@ import time
 import globalz
 import mod
 
+
 hostname = "10.0.75.2"
 port = "7272"
 api_key = "audiobot"
@@ -85,14 +86,14 @@ def update_just_value_config(tile, color="", background="False"):
    #print r.text
 
 def update_state():
-    if state == 0:
-        state = 1
+    if globalz.state == 0:
+        globalz.state = 1
         return
-    if state == 1:
-        state = 2
+    if globalz.state == 1:
+        globalz.state = 2
         return
-    if state == 2:
-        state = 0
+    if globalz.state == 2:
+        globalz.state = 0
 
 def update_text(tile, string=""):
     """
