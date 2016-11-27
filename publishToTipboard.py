@@ -12,6 +12,11 @@ hostname = "10.0.75.2"
 port = "7272"
 api_key = "audiobot"
 
+global state
+global orangeDecibelSum
+global orangeAvgCount
+global blueDecibelSum
+global blueAvgCount
 
 def update_big_value(tile, description, maintitle, mainvalue, title1, value1, \
                      title3, value3):
@@ -47,6 +52,15 @@ def update_big_value_config(tile, color="", background="False"):
 def update_just_value(tile, title, description, value):
     #### THE CONNECTION INFO TO THE TIPBOARD APP
     url = "http://"+ hostname + ":" + port + "/api/v0.1/" + api_key + "/push"
+    if tile == 'orangeavg' and state == 0:
+        orangeDecibelSum += value
+        orangeAvgCount += 1
+        value = orangeDecibelSum / orangeAvgCount
+        
+    if tile == 'blueavg' and state == 2:
+        blueDecibelSum += value
+        blueAvgCount += 1
+        value = blueDecibelSum / blueAvgCount
         
     ######  THE TEXT TO BE PUBLISHED ####
     text_data = {'title': title, 'description': description, 'just-value': value}
@@ -71,7 +85,17 @@ def update_just_value_config(tile, color="", background="False"):
     payload = {'value': json_value_data}
     r = requests.post(url, data=payload)
    #print r.text
-    
+
+def update_state():
+    if state == 0:
+        state = 1
+        return
+    if state == 1:
+        state = 2
+        return
+    if state == 2:
+        state = 0
+
 def update_text(tile, string=""):
     """
     :param tile:test
